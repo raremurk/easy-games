@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <title>Easy games</title>
+    </head>
+    <body>
+        <div class="header">
+            <h1>Easy Games</h1>
+        </div>
+
+        <div class="container">
+            <div class="row text-center">
+                <div class="col">
+                    <h2>Roulette</h2>
+                </div>
+                <div class="col">
+                    <h2>Dice</h2>
+                </div>
+            </div>
+            <div class="row text-center">
+                <div class="col">
+                    <span class="roul-res roul-bg">0</span>
+                    <p>
+                        <button id="roul" class="btn btn-primary">Spin the roulette</button>
+                    </p>
+                </div>
+                <div class="col">
+                    <span class="form-bg">
+                        <img class="dice-bg" src="images/dice/1.png" alt="1">
+                        <img class="dice-bg" src="images/dice/3.png" alt="3">
+                        <p class="sum-bg">0</p>
+                    </span>
+                    <p>
+                        <button id="roll_dice" class="btn btn-primary">Roll the dice</button>
+                    </p>
+                </div>
+            </div>
+            <div class="row text-center border-top border-bottom">
+                <div class="col">
+                    <h3>Results history</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div id="roul_result" class="col-6 border-right"></div>
+                <div id="dice_result" class="col-6"></div>
+            </div>
+        </div>
+		<script>
+		class DiceResult {
+		  constructor() {
+			this.dice1 = getRandomIntInclusive(1,6);
+			this.dice2 = getRandomIntInclusive(1,6);
+			this.sum = this.dice1 + this.dice2;
+		  }
+		}
+
+		class RoulResult {
+		  constructor() {
+			this.number = getRandomIntInclusive(0,36);
+			let red_numbers = [32, 19, 21, 25, 34, 27, 36, 30, 23, 5, 16, 1, 14, 9, 18, 7, 12, 3];
+			if (this.number == 0){
+				this.color = 'green';
+			}
+			else if (red_numbers.includes(this.number)){
+				this.color = 'red';
+			}
+			else{
+				this.color = 'black';
+			}
+		  }
+		}
+
+		document.addEventListener('DOMContentLoaded', function() {
+			let main_roul_output = document.querySelector('.roul-res');
+			let main_dice_output = document.querySelectorAll('.dice-bg');
+			let main_dice_sum = document.querySelector('.sum-bg');
+			document.querySelector('#roul').onclick = function(){
+				let roul_result = new RoulResult();
+				let html_elem = document.createElement('span');
+				html_elem.className = 'roul-res roul-sm';
+				changeRoul(main_roul_output, roul_result.number, roul_result.color);
+				changeRoul(html_elem, roul_result.number, roul_result.color);
+				document.querySelector('#roul_result').prepend(html_elem);
+			};
+			document.querySelector('#roll_dice').onclick = function(){
+				let dice_result = new DiceResult();
+				main_dice_output[0].src = 'images/dice/' + dice_result.dice1 + '.png';
+				main_dice_output[1].src = 'images/dice/' + dice_result.dice2 + '.png';
+				main_dice_sum.textContent = dice_result.sum;
+				document.querySelector('#dice_result').insertAdjacentHTML("afterbegin",
+					`<span class="form-sm">
+						<img class="dice-sm" src="images/dice-small/${dice_result.dice1}.png" alt="${dice_result.dice1}">
+						<img class="dice-sm" src="images/dice-small/${dice_result.dice2}.png" alt="${dice_result.dice2}">
+						<p class="sum-sm">${dice_result.sum}</p>
+					</span>`);
+			};
+		});
+
+		function changeRoul(object, text, color){
+			object.textContent = text;
+			object.style.background = color;
+		}
+
+		function getRandomIntInclusive(min, max) {
+			return Math.floor(Math.random() * (max - min + 1)) + min;
+		}
+		</script>
+    </body>
+</html>

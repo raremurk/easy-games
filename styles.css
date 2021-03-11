@@ -1,0 +1,83 @@
+.header {
+    background-color: #477bff;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 60px;
+}
+
+.btn {
+    margin: 15px 0px 0px;
+}
+
+.roul-res {
+    display: inline-block;
+    text-align: center;
+    color: white;
+    background: green;
+}
+
+.roul-bg {
+    font-size: 50px;
+    height: 100px;
+    width: 100px;
+    line-height: 95px;
+    border-radius: 5px;
+}
+
+.roul-sm {
+    font-size: 25px;
+    height: 50px;
+    width: 50px;
+    line-height: 47.5px;
+    border-radius: 2.5px;
+    margin: 10px 2.5px 0px;
+}
+
+.form-bg {
+    display: inline-block;
+    height: 100px;
+    width: 140px;
+}
+
+.dice-bg {
+    height: 70px;
+    width: 70px;
+    margin-right: -3px;
+    margin-left: -1px;
+}
+
+.sum-bg {
+    font-weight: bold;
+    font-size: 32px;
+    line-height: 8px;
+    height: 30px;
+    width: 140px;
+}
+
+.form-sm {
+    display: inline-block;
+    height: 50px;
+    width: 70px;
+    margin: 10px 10px 0px;
+}
+
+.dice-sm {
+    height: 34px;
+    width: 34px;
+    margin-right: -4px;
+}
+
+.sum-sm {
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 4px;
+    height: 14px;
+    width: 68px;
+}
